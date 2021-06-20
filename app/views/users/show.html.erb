@@ -1,0 +1,14 @@
+
+ <%= render 'users/userinfo',user: @user %>
+<h2>User Show</h2>
+ <table class="table table-user-show">
+            <% @tourists.each do |tourist| %>
+          <tr>
+              <td>
+                <%= attachment_image_tag tourist, :image,:fill,50,50, fallback:"no_image.jpg" %>
+              </td>
+              <td><%=link_to tourist.title, tourist_path(tourist.id) %></td>
+              <td><%= tourist.prace %></td>
+          </tr>
+             <%end%>
+  </table>

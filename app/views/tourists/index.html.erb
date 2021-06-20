@@ -1,0 +1,37 @@
+<div class="container">
+ <div class="row">
+   <div class="col-md-3">
+    <%= render 'users/userinfo',user: @user %>
+    <div>
+    <%= link_to  "Contribute", new_tourist_path, class: "btn btn-secondary" %>
+    </div>
+   </div>
+   <div class="col-md-9">
+    <table>
+      <thead>
+       <tr>
+        <th>user</th>
+        <th></th>
+        <th>place info</th>
+        <th></th>
+        <th></th>
+       </tr>
+      </thead>
+      <tbody>
+       <% @tourists.each do |tourist|%>
+       <tr>
+
+        <td><%= attachment_image_tag tourist.user, :pofile_image, :fill,50,50,fallback: "no_image.jpg" %></td>
+        <td><%= link_to user_path(tourist.user) do%><%= tourist.user.name %><%end%></td>
+
+
+        <td><%=link_to tourist_path(tourist.id) do%><%= tourist.title %><%end%></td>
+        <td><%= tourist.prace %></td>
+
+       </tr>
+       <%end%>
+      </tbody>
+    </table>
+   </div>
+ </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="newlist">
+
+
+<h3>Let's introduce the best place!</h3>
+<%= form_with model: @tourist, local:true do |f| %>
+<h4>Location Name</h4>
+<%= f.text_field :title %>
+<h4>Address</h4>
+<%= f.text_field :prace %>
+<h4>Impression</h4>
+<%= f.text_area :impression %>
+<h4>Image</h4>
+<%= f.attachment_field :image %>
+
+<%= f.submit 'Up'%>
+
+<%end%>
+
+
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+       <div class="col-md-3">
+           <%= render 'users/userinfo',user: @user %>
+       </div>
+       <div class="col-md-9 show">
+           <h2>Tourist Show</h2>
+           <table>
+               <tbody>
+                   <tr>
+                    <%= attachment_image_tag @tourist, :image,:fill,500,500, fallback:"no_image.jpg" %>
+                   </tr>
+                   <tr>
+                     <th>Location Name</th>
+                     <td><%= @tourist.title %></td>
+                   </tr>
+                   <tr>
+                     <th>Address</th>
+                     <td><%= @tourist.prace %></td>
+                   </tr>
+                   <tr>
+                     <th>Impression</th>
+                     <td><%= @tourist.impression %></td>
+                   </tr>
+                   <tr>
+                       <th><p>Comments <%= @tourist.comments.count %>件</p></th>
+                       <td>
+                           <% @tourist.comments.each do |comment| %>
+                           <%= link_to user_path(comment.user) do %>
+                           <%= attachment_image_tag comment.user, :pofile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+                           <%= comment.user.name %>
+                           <%end%>
+                           <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+                           <% if comment.user == current_user %>
+                           <%= link_to "Destroy", tourist_comment_path(comment.tourist,comment), method: :delete,class: 'btn btn-danger' %>
+                           <%end%>
+                           <%end%>
+                       </td>
+                   </tr>
+               </tbody>
+           </table>
+
+           <div class="new-comments">
+               <%= form_with(model:[@tourist,@comment],local: true) do |f| %>
+               <%= f.text_area :comment, placeholder:"Please a comment here" %>
+               <%= f.submit "up" %>
+               <%end%>
+           </div>
+
+       </div>
+    </div>
+</div>

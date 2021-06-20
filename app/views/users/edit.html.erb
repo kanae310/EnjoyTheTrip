@@ -1,0 +1,12 @@
+<h1>User Info</h1>
+
+<%= form_with model:@user do |f| %>
+
+<p>Name</p>
+<%= f.text_field :name %>
+<p>Image</p>
+<%= f.attachment_field :pofile_image %>
+<p>Introduction</p>
+<%= f.text_area :introduction %></br>
+<%= f.submit "Update User",class:"btn btn-success" %>
+<%end%>

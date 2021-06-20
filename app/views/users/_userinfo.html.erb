@@ -1,0 +1,32 @@
+<% if user==current_user %>
+<h2>My Info</h2>
+<% else%>
+<h2>User Info</h2>
+<%end%>
+
+<table class="profile-container table table-striped">
+  <thead>
+    <tr>
+     <%= attachment_image_tag user, :pofile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <th class="profile-name"><%= user.name %></th>
+    </tr>
+    <tr>
+      <th>Introduction</th>
+      <th><%= user.introduction %></th>
+    </tr>
+    <tr>
+      <% if user == current_user %>
+
+
+      <th class="btn btn-light w-100"><%= link_to  edit_user_path(current_user)  do %><i class="fas fa-user-cog"></i><%end%></th>
+      <% else %>
+      <th class="btn btn-light w-100"><%= link_to  edit_user_path(user.id) do %><i class="fas fa-user-cog"></i><%end%></th>
+      <% end%>
+    </tr>
+  </tbody>
+  </table>
